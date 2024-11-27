@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "AltaEmpleado";
+}
+
+<h1 class="text-center my-4">Registrar Empleado</h1>
+<hr />
+
+<div class="container">
+    @if (ViewBag.Exito != null)
+    {
+        <div class="alert alert-success text-center mt-3">@ViewBag.Exito</div>
+    }
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger text-center mt-3">@ViewBag.Error</div>
+    }
+
+    <form action="~/Empleados/ProcesarAltaEmpleado" method="post">
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre:</label>
+            <input type="text" class="form-control" name="nombre" id="nombre" />
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="text" class="form-control" name="email" id="email" />
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Contraseña:</label>
+            <input type="password" class="form-control" name="password" id="password" />
+        </div>
+        <div class="mb-3">
+            <label for="residente" class="form-label">Residencia:</label>
+            <select class="form-select" name="residente" id="residente">
+                <option value="1">Residente</option>
+                <option value="2">No residente</option>
+            </select>
+        </div>
+        <div class="d-grid">
+            <input type="submit" value="Registrar" class="btn btn-primary" />
+        </div>
+    </form>
+</div>

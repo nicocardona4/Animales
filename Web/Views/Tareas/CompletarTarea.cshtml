@@ -1,0 +1,29 @@
+﻿
+@using DOMINIO;
+@{
+    ViewData["Title"] = "Completar Tarea";
+}
+
+<h1 class="text-center my-4">Completar tarea</h1>
+<hr />
+<div class="container">
+    <form method="post" action="~/tareas/procesarcompletartarea">
+        <input type="text" value="@ViewBag.Tarea.Id" name="id" hidden />
+        <div class="mb-3">
+            <label for="comentario" class="form-label">Comentario:</label>
+            <input type="text" class="form-control" name="comentario" id="comentario" />
+        </div>
+        <div class="d-grid">
+            <input type="submit" value="Finalizar" class="btn btn-primary" />
+        </div>
+    </form>
+    @if (ViewBag.Exito != null)
+    {
+        <div class="alert alert-success mt-3">@ViewBag.Exito</div>
+    }
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger text-center mt-3">@ViewBag.Error</div>
+    }
+</div>

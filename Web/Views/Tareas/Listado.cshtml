@@ -1,0 +1,44 @@
+﻿@using DOMINIO;
+@{
+    ViewData["Title"] = "Listado";
+}
+<h1>Lista de tareas:</h1>
+
+<table class="table table-striped table-bordered table-hover table-sm text-nowrap">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Fecha de realización</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Tarea t in ViewBag.Tareas)
+        {
+            if (!t.Completada)
+            {
+                <tr>
+                    <td>@t.Id</td>
+                    <td>@t.Desc</td>
+                    <td>@t.FchRealizacion.ToShortDateString()</td>
+                    <td>
+                        <a class="btn btn-secondary btn-sm" href="~/tareas/completartarea?id=@t.Id">Finalizar tarea</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+
+@if (TempData["Exito"] != null)
+{
+    <div class="alert alert-success text-center">@TempData["Exito"]</div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger text-center">@TempData["Error"]</div>
+}
+
+

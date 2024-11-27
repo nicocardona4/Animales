@@ -1,0 +1,86 @@
+﻿@using DOMINIO;
+@model Bovino;
+@{
+    ViewData["Title"] = "AltaBovino";
+}
+
+<h1>Alta de bovino</h1>
+
+<hr />
+<div class="container">
+    <form method="post" action="~/animales/procesaraltabovino" class="form">
+
+        <div class="form-group">
+            <label for="TipoAlim">Tipo de Alimentación</label>
+            <select name="TipoAlim" class="form-control">
+                <option value="1">Grano</option>
+                <option value="2">Pastura</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="codigo">Código</label>
+            <input type="text" name="Codigo" value="@Model.Codigo" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="Sexo">Sexo</label>
+            <select name="Sexo" class="form-control">
+                <option value="1">Macho</option>
+                <option value="2">Hembra</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="Raza">Raza</label>
+            <input type="text" name="Raza" value="@Model.Raza" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="FchNac">Fecha de Nacimiento</label>
+            <input type="date" name="FchNac" value="@Model.FchNac" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="CostoAdq">Costo de Adquisición</label>
+            <input type="number" min="1" name="CostoAdq" value="@Model.CostoAdq" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="CostoAlim">Costo de Alimentación</label>
+            <input type="number" min="1" name="CostoAlim" value="@Model.CostoAlim" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="PesoActual">Peso Actual</label>
+            <input type="number" min="1" name="PesoActual" value="@Model.PesoActual" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="Hibrido">Híbrido</label>
+            <select name="Hibrido" class="form-control">
+                <option value="True">Es híbrido</option>
+                <option value="False">No es híbrido</option>
+            </select>
+        </div>
+        <br />
+
+        <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary">Ingresar bovino</button>
+        </div>
+    </form>
+
+    @if (ViewBag.Exito != null)
+    {
+        <div class="alert alert-success text-center mt-3">@ViewBag.Exito</div>
+    }
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger text-center mt-3">@ViewBag.Error</div>
+    }
+</div>
+
+
+
+

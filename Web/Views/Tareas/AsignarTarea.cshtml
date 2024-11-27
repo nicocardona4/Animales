@@ -1,0 +1,44 @@
+﻿@using DOMINIO;
+@model Tarea;
+@{
+    ViewData["Title"] = "AsignarTarea";
+}
+
+<h1 class="text-center my-4">Asignar tarea</h1>
+<hr />
+<div class="container">
+    <form method="post" action="~/tareas/procesarasignartarea">
+        <div class="mb-3">
+            <label for="Desc">Descripción</label>
+            <input type="text" name="Desc" value="@Model.Desc"/>
+        </div>
+        <div class="mb-3">
+            <label for="txtDate">Fecha de realización:</label>
+            <input type="date" name="FchRealizacion" value="@Model.FchRealizacion"/>
+        </div>
+        <div class="mb-3">
+            <label for="peon" class="form-label">Peon:</label>
+            <select class="form-select" name="email">
+                @foreach (Empleado p in Sistema.Instancia.Empleados)
+                { 
+                    if(p.GetTipo()== "Peon")
+                    { 
+                    <option value="@p.Email">@p.Nombre</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="d-grid">
+            <input type="submit" value="Agregar" class="btn btn-primary" />
+        </div>
+    </form>
+    @if (ViewBag.Exito != null)
+    {
+        <div class="alert alert-success text-center mt-3">@ViewBag.Exito</div>
+    }
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger text-center mt-3">@ViewBag.Error</div>
+    }
+</div>

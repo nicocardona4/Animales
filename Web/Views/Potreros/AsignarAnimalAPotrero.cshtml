@@ -1,0 +1,49 @@
+﻿@using DOMINIO;
+@{
+    ViewData["Title"] = "Asignar animal a potrero";
+}
+
+<h1 class="text-center my-4">Agregar vacunación</h1>
+<hr />
+<div class="container">
+    <form method="post" action="~/potreros/procesarasignaranimalapotrero">
+        <div class="mb-3">
+            <label for="animal" class="form-label">Animal:</label>
+            <select class="form-select" name="codigo">
+                @foreach (Animal a in Sistema.Instancia.Animales)
+                {
+                    if (a.Libre) 
+                    {
+                        <option value="@a.Codigo">@a</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="potrero" class="form-label">Potrero:</label>
+            <select class="form-select" name="id">
+                @foreach (Potrero p in Sistema.Instancia.Potreros)
+                {
+                    if (p.HayLugar())
+                    {
+                    <option value="@p.Id">@p</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="d-grid">
+            <input type="submit" value="Agregar" class="btn btn-primary" />
+        </div>
+    </form>
+    @if (ViewBag.Exito != null)
+    {
+        <div class="alert alert-success text-center mt-3">@ViewBag.Exito</div>
+    }
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger text-center mt-3">@ViewBag.Error</div>
+    }
+</div>
+
+
